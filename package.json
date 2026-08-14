@@ -29,6 +29,7 @@
   "license": "MIT",
   "keywords": [
     "dsh-plugin",
+    "deepseek-harness",
     "web-search",
     "tavily"
   ],
