@@ -1,0 +1,61 @@
+{
+  "name": "dsh-web-search-tavily",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Tavily web search for DSH with a settings toggle back to official DeepSeek search",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SZMY-haruhi/dsh-web-search-Tavily.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SZMY-haruhi/dsh-web-search-Tavily/issues"
+  },
+  "homepage": "https://github.com/SZMY-haruhi/dsh-web-search-Tavily#readme",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh-plugin",
+    "web-search",
+    "tavily"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-web": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-web-search-deepseek": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-credentials": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-launch-environment": "^0.1.0-rc.6"
+  }
+}

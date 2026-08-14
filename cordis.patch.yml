@@ -1,0 +1,9 @@
+# Select this bundle's provider. Toggle-off still runs official DeepSeek
+# inside our provider (no second searchProvider write on rc.6).
+- id: web
+  config:
+    searchProvider: tavily
+
+- insert:
+    - id: web-search-tavily
+      name: dsh-web-search-tavily
