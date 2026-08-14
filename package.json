@@ -1,8 +1,8 @@
 {
   "name": "dsh-web-search-tavily",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Tavily web search for DSH with a settings toggle back to official DeepSeek search",
+  "description": "Tavily web search for DSH: settings toggle back to official DeepSeek, keyless by default",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SZMY-haruhi/dsh-web-search-Tavily.git"
