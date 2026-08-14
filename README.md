@@ -15,6 +15,11 @@ dsh web
 
 设置 → 插件 → 插件配置 → **Tavily 网页搜索**：填 Key，打开开关，保存。
 
+<p align="center">
+  <img src="docs/settings-zh.png" alt="Tavily 网页搜索设置" width="560" />
+</p>
+
+
 钉 commit：
 
 ```sh

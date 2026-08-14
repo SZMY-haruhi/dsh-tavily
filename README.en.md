@@ -15,6 +15,11 @@ dsh web
 
 Settings → Plugins → Plugin settings → **Tavily web search**: paste the key, turn the toggle on, save.
 
+<p align="center">
+  <img src="docs/settings-en.png" alt="Tavily web search settings" width="560" />
+</p>
+
+
 Pin a commit:
 
 ```sh
