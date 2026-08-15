@@ -6,8 +6,6 @@
 
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的 Tavily 网页搜索。设置页开关：开 = Tavily，关 = 官方 DeepSeek。无 Key 也可搜（Tavily keyless）；填了 Key 走账号档。
 
-作者：[炸猪排258](https://tonkatsu258.vercel.app/)
-
 ## 安装
 
 ```sh
@@ -61,6 +59,13 @@ Provider id：`tavily`。
 
 可写在 `$DSH_HOME/.credentials.yaml`。不要把真实钥匙提交进仓库。
 
-## 作者
+---
 
-[炸猪排258](https://tonkatsu258.vercel.app/) · 个人主页（游戏实况 · 日常 Vlog）
+## Author
+
+<a href="https://tonkatsu258.vercel.app/index.html">
+  <img src="docs/avatar.png" width="96" height="96" alt="tonkatsu258" />
+</a>
+
+**感谢star❤️**
+**[tonkatsu258](https://tonkatsu258.vercel.app/index.html)** · [个人网站](https://tonkatsu258.vercel.app/index.html)
