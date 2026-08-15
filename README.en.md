@@ -6,6 +6,8 @@
 
 Tavily web search for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). Settings toggle: on = Tavily, off = official DeepSeek. Works without a key (Tavily keyless); a saved key uses your account quota.
 
+Author: [炸猪排258](https://tonkatsu258.vercel.app/)
+
 ## Install
 
 ```sh
@@ -58,3 +60,7 @@ Provider id: `tavily`.
 | `TAVILY_SEARCH_ENABLED` | Present = on; unset = off |
 
 You can also put these in `$DSH_HOME/.credentials.yaml`. Do not commit real keys.
+
+## Author
+
+[炸猪排258](https://tonkatsu258.vercel.app/) · personal site (game streams · daily vlogs)
