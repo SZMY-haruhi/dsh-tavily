@@ -2,7 +2,7 @@
 
 [中文](README.md) | English
 
-[awesome · DSH plugin](https://awesome-dsh-plugin.com)
+[![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com) [![Recommend dshfind](https://img.shields.io/badge/Recommend-dshfind-ffd700?labelColor=555555)](https://dshfind.com/zh/plugins/SZMY-haruhi/dsh-tavily?ref=badge)
 
 Tavily web search for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). Adds Tavily Search API as a web search provider for DSH.
 
@@ -86,6 +86,10 @@ You can also put these in `$DSH_HOME/.credentials.yaml`. Do not commit real keys
 
 
 ## Author
+
+<a href="https://tonkatsu258.vercel.app/index.html">
+  <img src="docs/avatar.png" width="96" height="96" alt="tonkatsu258" />
+</a>
 
 **Thanks for the star ❤️**
 **[tonkatsu258](https://tonkatsu258.vercel.app/index.html)** · [personal site](https://tonkatsu258.vercel.app/index.html)
