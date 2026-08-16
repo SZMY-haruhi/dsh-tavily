@@ -12,14 +12,12 @@ npm（稳定版，官方推荐）：
 
 ```sh
 dsh plugin --profile web add dsh-tavily
-dsh web
 ```
 
 也可以跟 GitHub（跟仓库最新提交）：
 
 ```sh
 dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
-dsh web
 ```
 
 设置 → 插件 → 插件配置 → **Tavily 网页搜索**：打开开关即可。Key 可选，不填走无 Key。左下「连通测试」可确认现在能不能搜（无 Key 也测得通）。
