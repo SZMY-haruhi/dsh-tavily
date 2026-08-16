@@ -8,6 +8,8 @@ Tavily web search for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek
 
 ## Install
 
+Pick one source. Do not run both.
+
 npm (stable, recommended):
 
 ```sh
