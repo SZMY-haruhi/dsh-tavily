@@ -24,3 +24,6 @@ Thumbs.db
 
 # Local DSH / tooling
 .dsh/
+
+# Local session handoff (do not publish)
+MEMORY.md
