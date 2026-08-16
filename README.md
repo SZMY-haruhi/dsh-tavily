@@ -8,14 +8,14 @@
 
 ## 安装
 
-官方推荐：
+npm（稳定版，官方推荐）：
 
 ```sh
 dsh plugin --profile web add dsh-tavily
 dsh web
 ```
 
-GitHub（跟仓库最新提交）：
+也可以跟 GitHub（跟仓库最新提交）：
 
 ```sh
 dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
