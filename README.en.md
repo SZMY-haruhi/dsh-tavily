@@ -8,14 +8,14 @@ Tavily web search for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek
 
 ## Install
 
-npm (stable release, recommended for everyday use):
+Official recommendation:
 
 ```sh
 dsh plugin --profile web add dsh-tavily
 dsh web
 ```
 
-GitHub also works. It tracks the repo, so updates land more often — use this if you want the latest commits.
+GitHub (latest commit on the repo):
 
 ```sh
 dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
