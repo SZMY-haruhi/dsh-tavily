@@ -10,6 +10,7 @@ Tavily web search for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek
 
 ```sh
 dsh plugin --profile web add dsh-tavily
+dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
 dsh web
 ```
 
