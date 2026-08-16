@@ -13,12 +13,6 @@ dsh plugin --profile web add dsh-tavily
 dsh web
 ```
 
-也可以从 GitHub 装：
-
-```sh
-dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
-```
-
 设置 → 插件 → 插件配置 → **Tavily 网页搜索**：打开开关即可。Key 可选，不填走无 Key。
 
 <p align="center">

@@ -13,12 +13,6 @@ dsh plugin --profile web add dsh-tavily
 dsh web
 ```
 
-Or from GitHub:
-
-```sh
-dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
-```
-
 Settings → Plugins → Plugin settings → **Tavily web search**: turn the toggle on. The key is optional; leave it blank for keyless.
 
 <p align="center">
