@@ -1,4 +1,4 @@
-# dsh-web-search-tavily
+# dsh-tavily
 
 [中文](README.md) | English
 
@@ -9,8 +9,14 @@ Tavily web search for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek
 ## Install
 
 ```sh
-dsh plugin --profile web add github:SZMY-haruhi/dsh-web-search-Tavily
+dsh plugin --profile web add dsh-tavily
 dsh web
+```
+
+Or from GitHub:
+
+```sh
+dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
 ```
 
 Settings → Plugins → Plugin settings → **Tavily web search**: turn the toggle on. The key is optional; leave it blank for keyless.
@@ -22,13 +28,13 @@ Settings → Plugins → Plugin settings → **Tavily web search**: turn the tog
 Pin a commit:
 
 ```sh
-dsh plugin --profile web add github:SZMY-haruhi/dsh-web-search-Tavily#<commit>
+dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily#<commit>
 ```
 
 Remove:
 
 ```sh
-dsh plugin --profile web remove dsh-web-search-tavily
+dsh plugin --profile web remove dsh-tavily
 ```
 
 > `dsh.bundle` · prebuilt `lib/` · git install does not need `allowBuilds`

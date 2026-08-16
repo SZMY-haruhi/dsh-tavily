@@ -1,4 +1,4 @@
-# dsh-web-search-tavily
+# dsh-tavily
 
 中文 | [English](README.en.md)
 
@@ -9,8 +9,14 @@
 ## 安装
 
 ```sh
-dsh plugin --profile web add github:SZMY-haruhi/dsh-web-search-Tavily
+dsh plugin --profile web add dsh-tavily
 dsh web
+```
+
+也可以从 GitHub 装：
+
+```sh
+dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
 ```
 
 设置 → 插件 → 插件配置 → **Tavily 网页搜索**：打开开关即可。Key 可选，不填走无 Key。
@@ -22,13 +28,13 @@ dsh web
 钉 commit：
 
 ```sh
-dsh plugin --profile web add github:SZMY-haruhi/dsh-web-search-Tavily#<commit>
+dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily#<commit>
 ```
 
 卸载：
 
 ```sh
-dsh plugin --profile web remove dsh-web-search-tavily
+dsh plugin --profile web remove dsh-tavily
 ```
 
 > `dsh.bundle` · 预构建 `lib/` · git 安装无需 `allowBuilds`
