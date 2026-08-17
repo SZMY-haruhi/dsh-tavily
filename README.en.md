@@ -24,6 +24,14 @@ dsh web
 
 Settings → Plugins → Plugin settings → **Tavily web search**: turn the toggle on. The key is optional; leave it blank for keyless. **Test connection** at the bottom-left checks that search works now (including keyless).
 
+**Please update to 0.3.1.** 0.3.0 can freeze the whole Web UI on “Failed to load plugins” when other client plugins are installed (the settings card registered as a list slot; current DSH requires a keyed `key`). This is fixed. npm:
+
+```sh
+dsh plugin --profile web update dsh-tavily
+```
+
+GitHub installs: run `add github:SZMY-haruhi/dsh-tavily` again.
+
 <p align="center">
   <img src="docs/settings-en.png" alt="Tavily web search settings: keyless connection test passed" width="560" />
 </p>
@@ -79,6 +87,7 @@ You can also put these in `$DSH_HOME/.credentials.yaml`. Do not commit real keys
 
 ## Updates
 
+- **2026-08-17** **0.3.1 (please update)** Fix: installing alongside other client plugins could freeze Web on “Failed to load plugins / dsh-tavily” (`settings.plugin.item` needs `key`, not `id`/`order`). Card namespace is `web-search-tavily`; the official Web Search card is not shadowed. Toggle and key still live on credentials.
 - **2026-08-17** Settings card: Test connection at the bottom-left. Works without a key (Tavily keyless). A saved key uses the account path and 1 credit. Does not change the toggle or Save.
 
 ---
