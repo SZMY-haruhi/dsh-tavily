@@ -20,9 +20,9 @@ dsh plugin --profile web add dsh-tavily
 dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
 ```
 
-设置 → 插件 → 插件配置 → **Tavily 网页搜索**：打开开关即可。Key 可选，不填走无 Key。左下「连通测试」可确认现在能不能搜（无 Key 也测得通）。
+侧栏 **插件** → 已安装的 **dsh-tavily** → 组件 **web-search-tavily** 的配置页：打开开关即可。Key 可选，不填走无 Key。页内「连通测试」可确认现在能不能搜（无 Key 也测得通）。
 
-**请更新到 0.3.1。** 0.3.0 在和其它客户端插件一起装时，可能让整个 Web 停在「Failed to load plugins」（设置卡按 list 槽注册，当前 DSH 要求 keyed `key`）。已修复。npm：
+**请更新到 0.3.2。** 0.3.1 及更早版本按 DSH 0.1 的 `settings.register` + `settings.plugin.item` 挂设置卡。DSH 0.2 起该接口和插槽已移除，插件会在启动时失败，设置页也没有入口。0.3.2 改到插件页的 `plugins.row.config`。npm：
 
 ```sh
 dsh plugin --profile web update dsh-tavily
@@ -85,7 +85,8 @@ Provider id：`tavily`。
 
 ## 更新
 
-- **2026-08-17** **0.3.1（请更新）** 修复：与其它客户端插件同时安装时，Web 可能卡在「Failed to load plugins / dsh-tavily」（`settings.plugin.item` 需 `key`，不能再用 `id`/`order`）。设置卡命名空间 `web-search-tavily`，不覆盖官方网页搜索卡。开关与 Key 仍走 credentials。
+- **2026-10-12** **0.3.2（请更新）** 适配 DSH 0.2：去掉已删除的 `settings.register`；设置卡从 `settings.plugin.item` 改到 `plugins.row.config`（`dsh-tavily#web-search-tavily`）；凭证读写改走 `remote.credentials`，刷新事件改为 `credentials/reference-updated`；快照 store 改为 `@deepseek-ai/dsh-client-store`。开关与 Key 仍走 credentials。
+- **2026-08-17** **0.3.1** 修复：与其它客户端插件同时安装时，Web 可能卡在「Failed to load plugins / dsh-tavily」（当时的 `settings.plugin.item` 需 `key`）。该插槽在 DSH 0.2 已移除，请改用 0.3.2。
 - **2026-08-17** 设置卡左下增加连通测试。无 Key 也可测（走 Tavily keyless）；有已存 Key 则走账号档，消耗 1 积分。不改开关、不占用保存。
 
 ---

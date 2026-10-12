@@ -1,6 +1,6 @@
 {
   "name": "dsh-tavily",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "Tavily web search for DSH: settings toggle back to official DeepSeek, keyless by default",
   "repository": {
@@ -39,12 +39,9 @@
     },
     "client": {
       "inject": [
-        "@deepseek-ai/dsh-client-connection",
         "@deepseek-ai/dsh-client-locale",
-        "@deepseek-ai/dsh-client-runtime",
-        "@deepseek-ai/dsh-api-remotes",
-        "@deepseek-ai/dsh-client-ui-settings",
-        "@deepseek-ai/dsh-client-ui-slots"
+        "@deepseek-ai/dsh-client-ui-plugin-manager",
+        "@deepseek-ai/dsh-api-remotes"
       ],
       "platform": "web"
     }
@@ -53,10 +50,10 @@
     "@deepseek-ai/schemastery": "^3.18.1"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-web": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-web-search-deepseek": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-credentials": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-launch-environment": "^0.1.0-rc.6"
+    "@deepseek-ai/cordis": ">=4.0.4",
+    "@deepseek-ai/dsh-web": ">=0.2.0-rc.2",
+    "@deepseek-ai/dsh-web-search-deepseek": ">=0.2.0-rc.2",
+    "@deepseek-ai/dsh-credentials": ">=0.2.0-rc.2",
+    "@deepseek-ai/dsh-launch-environment": ">=0.2.0-rc.2"
   }
 }
