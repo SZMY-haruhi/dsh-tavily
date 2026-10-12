@@ -51,14 +51,8 @@ assert.equal(providers[0].id, "tavily");
 assert.equal(ENABLED_REF, "TAVILY_SEARCH_ENABLED");
 assert.equal(routes.length, 1);
 assert.equal(routes[0].path, "/api/tavily-probe");
-assert.deepEqual(routes[0].methods, ["GET", "POST"]);
+assert.deepEqual(routes[0].methods, ["POST"]);
 assert.equal(routes[0].requestBody, "buffered");
-
-const getRes = await routes[0].fetch(new Request("http://dsh.internal/api/tavily-probe", { method: "GET" }));
-const getBody = await getRes.text();
-assert.equal(getRes.status, 405);
-assert.equal(JSON.parse(getBody).ok, false);
-assert.equal(getBody.includes(SECRET), false);
 
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async (_url, init) => {

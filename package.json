@@ -55,6 +55,7 @@
     "@deepseek-ai/dsh-web-search-deepseek": ">=0.2.0-rc.2 <0.3.0 || >=0.2.1-alpha.0 <0.3.0",
     "@deepseek-ai/dsh-credentials": ">=0.2.0-rc.2 <0.3.0 || >=0.2.1-alpha.0 <0.3.0",
     "@deepseek-ai/dsh-launch-environment": ">=0.2.0-rc.2 <0.3.0 || >=0.2.1-alpha.0 <0.3.0",
+    "@deepseek-ai/dsh-client-connection": ">=0.2.0-rc.2 <0.3.0 || >=0.2.1-alpha.0 <0.3.0",
     "@deepseek-ai/dsh-client-store": ">=0.2.0-rc.2 <0.3.0 || >=0.2.1-alpha.0 <0.3.0"
   }
 }
