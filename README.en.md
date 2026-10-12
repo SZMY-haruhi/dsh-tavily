@@ -22,9 +22,9 @@ dsh plugin --profile web add github:SZMY-haruhi/dsh-tavily
 dsh web
 ```
 
-Settings → Plugins → Plugin settings → **Tavily web search**: turn the toggle on. The key is optional; leave it blank for keyless. **Test connection** at the bottom-left checks that search works now (including keyless).
+Sidebar **Plugins** → installed **dsh-tavily** → the **web-search-tavily** row’s configuration page: turn the toggle on. The key is optional; leave it blank for keyless. **Test connection** on that page checks that search works now (including keyless).
 
-**Please update to 0.3.1.** 0.3.0 can freeze the whole Web UI on “Failed to load plugins” when other client plugins are installed (the settings card registered as a list slot; current DSH requires a keyed `key`). This is fixed. npm:
+**Please update to 0.3.2.** 0.3.1 and earlier mount the card with DSH 0.1’s `settings.register` and `settings.plugin.item`. DSH 0.2 removed that API and slot, so the plugin fails during startup and the card has no entry. 0.3.2 registers `plugins.row.config` on the Plugins page. npm:
 
 ```sh
 dsh plugin --profile web update dsh-tavily
@@ -54,7 +54,7 @@ dsh plugin --profile web remove dsh-tavily
 
 ## Features
 
-- Settings toggle: off = official DeepSeek, on = Tavily — no uninstall to switch back
+- Plugins-page toggle: off = official DeepSeek, on = Tavily — no uninstall to switch back
 - No key uses Tavily keyless; a key uses `Authorization: Bearer`
 - Bottom-left connection test: one real Tavily search (`max_results: 1`); keyless if no key, account quota if a key is saved (1 credit)
 - Timeout, abort, official host lock, drop results without a url
@@ -85,10 +85,13 @@ Provider id: `tavily`.
 
 You can also put these in `$DSH_HOME/.credentials.yaml`. Do not commit real keys.
 
+The Plugins-page card always reads and writes `TAVILY_API_KEY` and `TAVILY_SEARCH_ENABLED`. The cordis field `apiKeyEnv` only changes which reference the host resolver and the connection test use when there is no draft key. They name the same reference only while `apiKeyEnv` stays at the default `TAVILY_API_KEY`. A different `apiKeyEnv` leaves the card on `TAVILY_API_KEY` while search and the test read the new name.
+
 ## Updates
 
-- **2026-08-17** **0.3.1 (please update)** Fix: installing alongside other client plugins could freeze Web on “Failed to load plugins / dsh-tavily” (`settings.plugin.item` needs `key`, not `id`/`order`). Card namespace is `web-search-tavily`; the official Web Search card is not shadowed. Toggle and key still live on credentials.
-- **2026-08-17** Settings card: Test connection at the bottom-left. Works without a key (Tavily keyless). A saved key uses the account path and 1 credit. Does not change the toggle or Save.
+- **2026-10-12** **0.3.2 (please update)** DSH 0.2: drop the removed `settings.register`; move the card from `settings.plugin.item` to `plugins.row.config` on the Plugins page (`dsh-tavily#web-search-tavily`); read and write credentials through `remote.credentials` and refresh on `credentials/reference-updated`; snapshot store is the peer `@deepseek-ai/dsh-client-store` so it shares the host instance. Peers stay on 0.2.x (including `0.2.0-rc.2` and `0.2.1-alpha`) and cordis 4.x. A failed save shows its error code; a failed credential read locks the toggle. The connection test is a `connection.fetch` route, so an anonymous request gets the host's 401. Toggle and key still live on credentials.
+- **2026-08-17** **0.3.1** Fix: installing alongside other client plugins could freeze Web on “Failed to load plugins / dsh-tavily” (the then-current `settings.plugin.item` needed `key`). That slot is gone in DSH 0.2; use 0.3.2.
+- **2026-08-17** Configuration page: Test connection at the bottom-left. Works without a key (Tavily keyless). A saved key uses the account path and 1 credit. Does not change the toggle or Save.
 
 ---
 
