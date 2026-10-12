@@ -87,7 +87,7 @@ Provider id：`tavily`。
 
 ## 更新
 
-- **2026-10-12** **0.3.2（请更新）** 适配 DSH 0.2：去掉已删除的 `settings.register`；配置入口从 `settings.plugin.item` 改到插件页 `plugins.row.config`（`dsh-tavily#web-search-tavily`）；凭证读写改走 `remote.credentials`，刷新事件改为 `credentials/reference-updated`；快照 store 改为 `@deepseek-ai/dsh-client-store`（peer，与宿主共用同一份）。peer 收在 0.2.x（含 `0.2.0-rc.2` 与 `0.2.1-alpha`）和 cordis 4.x。保存失败会显示错误码，读凭证失败则锁定开关。开关与 Key 仍走 credentials。
+- **2026-10-12** **0.3.2（请更新）** 适配 DSH 0.2：去掉已删除的 `settings.register`；配置入口从 `settings.plugin.item` 改到插件页 `plugins.row.config`（`dsh-tavily#web-search-tavily`）；凭证读写改走 `remote.credentials`，刷新事件改为 `credentials/reference-updated`；快照 store 改为 `@deepseek-ai/dsh-client-store`（peer，与宿主共用同一份）。peer 收在 0.2.x（含 `0.2.0-rc.2` 与 `0.2.1-alpha`）和 cordis 4.x。保存失败会显示错误码，读凭证失败则锁定开关。连通测试改走 `connection.fetch`，未登录请求由宿主返回 401。开关与 Key 仍走 credentials。
 - **2026-08-17** **0.3.1** 修复：与其它客户端插件同时安装时，Web 可能卡在「Failed to load plugins / dsh-tavily」（当时的 `settings.plugin.item` 需 `key`）。该插槽在 DSH 0.2 已移除，请改用 0.3.2。
 - **2026-08-17** 配置页左下增加连通测试。无 Key 也可测（走 Tavily keyless）；有已存 Key 则走账号档，消耗 1 积分。不改开关、不占用保存。
 

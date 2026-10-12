@@ -8,7 +8,7 @@ registerHooks({
   },
 });
 
-const { apply, TAVILY_PROVIDER_ID, ENABLED_REF } = await import("../lib/index.js");
+const { apply, inject, TAVILY_PROVIDER_ID, ENABLED_REF } = await import("../lib/index.js");
 const { deepseekCalls } = await import("./mocks/web-search-deepseek.mjs");
 
 const SECRET = "tvly-test-secret-should-not-leak";
@@ -18,14 +18,20 @@ const ctx = {
   get() {
     return undefined;
   },
+  effect(run) {
+    return run();
+  },
   web: {
     registerSearchProvider(provider) {
       providers.push(provider);
     },
   },
-  webServer: {
-    register(route) {
-      routes.push(route);
+  connection: {
+    fetch: {
+      register(route) {
+        routes.push(route);
+        return () => {};
+      },
     },
   },
 };
@@ -38,43 +44,21 @@ apply(ctx, {
   searchTimeoutMs: 1000,
 });
 
+assert.deepEqual(inject, ["web", "connection"]);
 assert.equal(providers.length, 1);
 assert.equal(providers[0].id, TAVILY_PROVIDER_ID);
 assert.equal(providers[0].id, "tavily");
 assert.equal(ENABLED_REF, "TAVILY_SEARCH_ENABLED");
 assert.equal(routes.length, 1);
-assert.equal(routes[0].kind, "exact");
 assert.equal(routes[0].path, "/api/tavily-probe");
+assert.deepEqual(routes[0].methods, ["GET", "POST"]);
+assert.equal(routes[0].requestBody, "buffered");
 
-function mockRes() {
-  return {
-    status: 0,
-    body: "",
-    writeHead(status) {
-      this.status = status;
-    },
-    end(payload) {
-      this.body = payload;
-    },
-  };
-}
-
-function mockReq(method, json) {
-  const text = json === undefined ? "" : JSON.stringify(json);
-  return {
-    method,
-    on(event, handler) {
-      if (event === "data" && text) handler(Buffer.from(text));
-      if (event === "end") handler();
-    },
-  };
-}
-
-const getRes = mockRes();
-await routes[0].handler(mockReq("GET"), getRes);
+const getRes = await routes[0].fetch(new Request("http://dsh.internal/api/tavily-probe", { method: "GET" }));
+const getBody = await getRes.text();
 assert.equal(getRes.status, 405);
-assert.equal(JSON.parse(getRes.body).ok, false);
-assert.equal(getRes.body.includes(SECRET), false);
+assert.equal(JSON.parse(getBody).ok, false);
+assert.equal(getBody.includes(SECRET), false);
 
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async (_url, init) => {
@@ -86,18 +70,38 @@ globalThis.fetch = async (_url, init) => {
 };
 
 try {
-  const postRes = mockRes();
-  await routes[0].handler(mockReq("POST", { apiKey: SECRET }), postRes);
+  const postRes = await routes[0].fetch(new Request("http://dsh.internal/api/tavily-probe", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ apiKey: SECRET }),
+  }));
+  const postBody = await postRes.text();
   assert.equal(postRes.status, 200);
-  const posted = JSON.parse(postRes.body);
+  const posted = JSON.parse(postBody);
   assert.equal(posted.ok, true);
   assert.equal(posted.mode, "key");
-  assert.equal(postRes.body.includes(SECRET), false);
+  assert.equal(postBody.includes(SECRET), false);
+
+  globalThis.fetch = async () => {
+    throw new Error(`upstream echoed ${SECRET}`);
+  };
+  const leaked = await routes[0].fetch(new Request("http://dsh.internal/api/tavily-probe", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ apiKey: SECRET }),
+  }));
+  const leakedBody = await leaked.text();
+  assert.equal(leaked.status, 200);
+  assert.equal(JSON.parse(leakedBody).ok, false);
+  assert.equal(leakedBody.includes(SECRET), false);
 
   globalThis.fetch = async () => new Response(JSON.stringify({ results: [] }), { status: 200 });
-  const keyless = mockRes();
-  await routes[0].handler(mockReq("POST", {}), keyless);
-  assert.deepEqual(JSON.parse(keyless.body), { ok: true, mode: "keyless" });
+  const keylessRes = await routes[0].fetch(new Request("http://dsh.internal/api/tavily-probe", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: "{}",
+  }));
+  assert.deepEqual(await keylessRes.json(), { ok: true, mode: "keyless" });
 
   const off = await providers[0].search({ query: "probe" });
   assert.equal(deepseekCalls.length, 1);
